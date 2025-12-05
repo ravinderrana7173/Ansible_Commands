@@ -1,2 +1,21 @@
+
+## Create a inventory.ini (hosts) in location (/etc/ansible/hosts) and include all manage nodes in this hosts file..
+## After creation this file Ansible pick this hosts file as a default inventory.ini file..##
+## So basically you don't need to mention all the time inventory.ini file in Adhoc commands.
+
+
+
 ansible -i inventory.ini -m ping all     ( Ping to all manage nodes which are added in inventory.ini file )
 ansible -i inventory.ini -m ping node1    ( Ping to single manage node which is under group called node1 in inventory.ini file )
+ansible -i inventory.ini -m ansible.builtin.service -a "name=httpd state=started" node1   ( Start a service on manage node )
+ansible -i inventory.ini -m shell -a "sudo apt install curl" node1   ( Install curl on manage node1 )
+ansible -i inventory.ini -m shell -a "free -m" node1    ( Check memory usage on manage node1 )
+ansible -i inventory.ini -m shell -a "sudo apt install apache2 -y" node1 ( Apache install on node 1 )
+ansible -i inventory.ini -m ansible.builtin.service -a "name=apache2 state=started" node1  ( Start a service on manage node1 )
+ansible -i inventory.ini -m service -a "name=apache2 state=stopped" --become node1  ( --become use for forcefully to start or stop service )
+ansible -i inventory.ini -m file -a "path=/opt/test state=directory mode=0755" --become node1 ( Create a Directory in manage node1 )
+ansible -i inventory.ini -m copy -a "src=/tmp/file.txt dest=/tmp/file.txt mode=0644" --become node1 ( Copy a file in node1 )
+ansible -i inventory.ini -m user -a "name=john state=present" --become node1 ( Create a user in manage node1 )
+ansible -i inventory.ini -m user -a "name=john state=absent" --become node1  ( Delete a user in manage node1 )
+
+
