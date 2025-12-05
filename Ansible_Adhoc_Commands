@@ -1,0 +1,2 @@
+ansible -i inventory.ini -m ping all     ( Ping to all manage nodes which are added in inventory.ini file )
+ansible -i inventory.ini -m ping node1    ( Ping to single manage node which is under group called node1 in inventory.ini file )
