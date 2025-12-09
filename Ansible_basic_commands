@@ -1,0 +1,2 @@
+ansible-playbook test.yml             ( Use for run ansible playbook )
+ansible-galaxy role init test          ( use for create role for playbook )
