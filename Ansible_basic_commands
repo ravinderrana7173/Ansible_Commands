@@ -1,2 +1,3 @@
-ansible-playbook test.yml             ( Use for run ansible playbook )
-ansible-galaxy role init test          ( use for create role for playbook )
+ansible-playbook test.yml                        ( Use for run ansible playbook )
+ansible-galaxy role init test                    ( use for create role for playbook )
+ansible-galaxy role install bsmeding.docker      ( Role install from web (galaxy.ansible.com))
