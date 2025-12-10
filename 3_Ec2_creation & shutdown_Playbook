@@ -27,11 +27,13 @@
 ############################################
 
 ---
-- hosts: all
-  become: true
+- name: Stop only Ubuntu EC2 instances
+  hosts: all
+  become: yes
+  gather_facts: yes
 
   tasks:
     - name: Shutdown ubuntu instances only
-      ansible.builtin.command: /sbin/shutdown -t now
-      when:
-       ansible_facts['os_family'] == "Debian"
+      command: shutdown -h now
+      when: ansible_facts['os_family'] == "Debian"
+
