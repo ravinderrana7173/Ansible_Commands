@@ -1,0 +1,15 @@
+---
+- hosts: manage-nodes
+  become: true
+
+  tasks:
+    - name: Make sure the packages openssh and openssl are up to date
+      ansible.builtin.apt:
+        name: "{{ item }}"
+        state: latest
+      loop:
+        - openssh
+        - openssl
+      ignore_errors: yes
+    - name: Verify if Docker is installed
+      ansible.builtin.command: docker --version
